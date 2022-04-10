@@ -83,6 +83,16 @@ function neverEnd(): never {
   }
 }
 ````
+### union - String number 둘 다 가능
+````ts
+let name : string | number = 'top';
+````
+
+### type이 길 때 이런식으로도 가능 type은 왠만하면 첫 글자 대문자로 ㄱㄱ
+````ts
+let type = string | number
+let name : type = 'top';
+````
 
 
 
