@@ -43,7 +43,7 @@ let arr: Array<number> = [1,2,3];   // 제네릭을 사용할 수도 있음
 ### 튜플
  - 튜플은 배열의 길이가 고정되고 각 요소의 타입이 지정되어 있는 배열 형식을 의미
 ````ts
-let arr: [string, number] = ['hi', 10];
+let arr: [string, number] = ['hi', 10]; -> string number로 들어가야함
 arr[1].concat('!'); // Error, 'number' does not have 'concat'
 arr[5] = 'hello'; // Error, Property '5' does not exist on type '[string, number]'. // 정의하지 않은 타입, 인덱스로 접근할 경우 오류 만남
 ````
