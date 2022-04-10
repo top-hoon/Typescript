@@ -68,14 +68,14 @@ let num: any = 10;
 let arr: any = ['a', 2, true];
 ````
 ### Void
- - 변수에는 undefined와 null만 할당하고, 함수에는 반환 값을 설정할 수 없는 타입
+ - 변수에는 undefined와 null만 할당하고, 함수에는 반환 값을 설정할 수 없는 타입 -log 만 반환하거나 할 때 사용
 ````ts
 let unuseful: void = undefined;
 function notuse(): void {
   console.log('sth');
 }
 ````
-### Never
+### Never - error 반환하거나, 무한루프 돌릴때 사용
 ````ts
 // 이 함수는 절대 함수의 끝까지 실행되지 않는다는 의미
 function neverEnd(): never {
@@ -94,8 +94,103 @@ let type = string | number
 let name : type = 'top';
 ````
 
+### object 
+ - 1. property를 사용해서 객체를 표현하고자 할 때는 interface 사용해야함
+````ts
+let user :object
+
+user ={
+ name: 'xx',
+ age : 30
+}
+console.log(user.name) -> error object에는 name이 없다고 뜸 property를 사용해서 객체를 표현하고자 할 때는 interface 사용해야함
 
 
+interface User ={
+ name: 'xx';
+ age : 30;
+ gender? : string;
+}
+
+let user: User ={
+ name: 'xx',
+ age : 30
+}
+console.log(user.name) ok
+````
+ - 2. 객체에 속성 추가하려면 이런식으로 인터페이스에 추가해준다. 대신 있어도 되고 없어도 되게끔 ? 사용했음 대신 type은 맞춰서 넣어주어야함
+````ts
+user.gender = "male" -> error 발생
+
+interface User ={
+ name: 'xx';
+ age : 30;
+ gender? : string;
+}
+
+let user: User ={
+ name: 'xx',
+ age : 30
+}
+````
+
+````ts
+interface User ={
+ name: 'xx';
+ age : 30;
+ gender? : string;
+ readonly birth : number;
+ [key : number]  : string -> 연속되는 숫자와 문자열을 그냥 통으로 지정해준거  저기의 key는 이름 바뀌어도 상관없음
+}
+
+let user: User ={
+ name: 'xx',
+ age : 30,
+ birth : 2000,
+ 1:'A' -> ok
+ 1:'B' -> ok
+}
+user.birth = 1990; -> 추가안됨 readonly라서 처음에 할당할 때만 정할 수 있음
+
+````
+ - 문자열 리터럴 타입 [key : number]  : string -> string이라서 범위 가 너무 넓어서 미리 지정해주는것 미리 지정해 놓은 값들만 넣을 수 있음
+````ts
+type Score = 'A'| 'B'| 'C'| 'D'|
+interface User ={
+ name: 'xx';
+ age : 30;
+ gender? : string;
+ readonly birth : number;
+ [key : number]  : string -> 연속되는 숫자와 문자열을 그냥 통으로 지정해준거  저기의 key는 이름 바뀌어도 상관없음
+}
+
+let user: User ={
+ name: 'xx',
+ age : 30,
+ birth : 2000,
+ 1:'A' -> ok
+ 1:'B' -> ok
+}
+````
+ - 인터페이스로 함수 만들기
+````ts
+// 1번
+interface Add{
+ (num1 : number, num2 : number): number
+ }
+ const add : Add = function(x,y){
+  return x+y
+ }
+ 
+// 2번
+interface isAdult{
+ (age:number):boolean
+ }
+ const a : isAdult = (age){
+  return age > 19;
+ }
+ a(33) // true
+````
 
 
 
