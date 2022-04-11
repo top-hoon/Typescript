@@ -192,12 +192,83 @@ interface isAdult{
  a(33) // true
 ````
 
+ - 인터페이스로 클래스 만들기 -> 자바 개념이랑 똑같음
+````ts
+interface Car {
+ color : String;
+ wheels: number;
+ start() : void;
+ }
+ 
+class BMW implements Car{
+ color = "red";
+ wheels = 4;
+ start(){
+  console.log('hi')
+ }
+}
 
+// 생성자 사용 버전 생성될때 색상 입렫받음
+class BMW implements Car{
+ color;
+ wheels = 4;
+ constructor (c:String){
+  this.color = c;
+ }
+ start(){
+  console.log('hi')
+ }
+}
 
+const b = new Bmw('green');
+````
+ - 인터페이스 확장
 
+````ts
+interface Car {
+ color : String;
+ wheels: number;
+ start() : void;
+ }
+ 
+interface Benz extends Car{
+ door : number;
+ stop() : void;
+}
 
-
-
+const benz:Benz = {
+ door : number;
+ color;
+ wheels = 4;
+ constructor (c:String){
+  this.color = c;
+ }
+ start(){
+  console.log('hi')
+ }
+ stop(){
+  console.log('stop')
+ }
+}
+}
+````
+ - 당연히 extends 하기전의 속성들도 넣어주어야함
+ - 확장은 여러개도 한번에 가능!
+````ts
+interface Car {
+ color : String;
+ wheels: number;
+ start() : void;
+ }
+ 
+ interface Toy{
+  name : String;
+ }
+ 
+ interface ToyCar extends Car, Toy{
+  price : number;
+ }
+````
 
 
 
