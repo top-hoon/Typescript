@@ -1,5 +1,5 @@
 //접근 제한자 (Access modifier) - public(default), private, protected
-
+   
 class car{
     name: string = "car";       // public이 생략되어있음, private 라고 하면 밑에서 에러남 private -> #name으로도 표현가능 기능상 차이는  없음
     // color: string;           // name을 protected로 설정할 경우 자식클래스 에러는 다 사라지는데 인스턴스에서는 사용못함 에러남
